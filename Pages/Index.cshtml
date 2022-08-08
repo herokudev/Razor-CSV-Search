@@ -1,0 +1,75 @@
+﻿@page
+@model CSVSearchWebApp.Pages.IndexModel
+
+<div class="jumbotron">
+     <h1 class="display-3">CSV search demo.</h1>
+     <p class="lead">Do a general search or pick a column from the dropbox.</p>
+
+    <form class="form-horizontal" method="post">
+        <div class="form-group">
+            <label for="SearchTerm" class="col-sm-2 control-label">Search Term: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="SearchTerm">
+            </div>
+        </div>
+        <div class="form-group">
+         <select for="Columns" name="Columns">
+              <option value="">All columns</option>
+              <option value="RankId">Rank Id</option>
+              <option value="TeamName">Team Name</option>
+              <option value="MascotName">Mascot Name</option>
+              <option value="DateLastWin">Date Last Win</option>
+              <option value="WinRate">Win Rate</option>
+              <option value="WinsCount">Wins Count</option>
+              <option value="LossesCount">Losses Count</option>
+              <option value="TiesCount">Ties Count</option>
+              <option value="GamesCount">Games Count</option>
+        </select><br />
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+     
+     <hr />
+     <h3>@ViewData["confirmation"]</h3>
+
+    <div class="row">
+     <table class="table">
+         <thead class="thead-inverse">
+            <tr>
+                <th>Rank</th>
+                <th>Team Name</th>
+                <th>Mascot Name</th>
+                <th>Date last win</th>
+                <th>Winning Percent</th>
+                <th>Wins Count</th>
+                <th>Losses Count</th>
+                <th>Ties Count</th>
+                <th>Games Count</th>
+            </tr>
+         </thead>
+         <tbody>
+             @if (Model.Ranks is not null)
+             {
+                @foreach (CSVSearchWebApp.Pages.IndexModel.Rank r in Model.Ranks)
+                {
+                     <tr>
+                        <td>@r.RankId</td>
+                        <td>@r.TeamName</td>
+                        <td>@r.MascotName</td>
+                        <td>@r.DateLastWin</td>
+                        <td>@r.WinRate</td>
+                        <td>@r.WinsCount</td>
+                        <td>@r.LossesCount</td>
+                        <td>@r.TiesCount</td>
+                        <td>@r.GamesCount</td>
+                    </tr>                    
+                }
+             }
+         </tbody>
+     </table>
+    </div>
+</div>
